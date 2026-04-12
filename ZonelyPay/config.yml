@@ -1,0 +1,75 @@
+#  ________  ________  ________   _______   ___           ___    ___ 
+# |\_____  \|\   __  \|\   ___  \|\  ___ \ |\  \         |\  \  /  /|
+#  \|___/  /\ \  \|\  \ \  \\ \  \ \   __/|\ \  \        \ \  \/  / /
+#      /  / /\ \  \\\  \ \  \\ \  \ \  \_|/_\ \  \        \ \    / / 
+#     /  /_/__\ \  \\\  \ \  \\ \  \ \  \_|\ \ \  \____    \/  /  /  
+#    |\________\ \_______\ \__\\ \__\ \_______\ \_______\__/  / /    
+#     \|_______|\|_______|\|__| \|__|\|_______|\|_______|\___/ /     
+#                                                       \|___|/                                                                               #  ________  ________      ___    ___                                
+# |\   __  \|\   __  \    |\  \  /  /|                               
+# \ \  \|\  \ \  \|\  \   \ \  \/  / /                               
+#  \ \   ____\ \   __  \   \ \    / /                                
+#   \ \  \___|\ \  \ \  \   \/  /  /                                 
+#    \ \__\    \ \__\ \__\__/  / /                                   
+#     \|__|     \|__|\|__|\___/ /                                    
+#                        \|___|/                                     
+
+site:
+  name: "Örnek Firma"  # Firma adı
+  base_url: "https://pays.zonely.gen.tr" # Kurulum yapılan sağlayıcı site adresi.
+  logo_url: "https://provider.example.com/assets/logo.png" # Logonuz.
+  sales_contract_url: "https://pays.zonely.gen.tr/contract.html" # Sözleşme yolu.
+  notify_path: "/Files/Api/process.php?api=zonelypay" # X sitedeki callback yolu (düzenlemeyin.)
+  merchant_email: "merchant@example.com" # Firma bilgilendirme e-postası
+
+security:
+  shared_secret: "06HyGJkyUgWwv7vIoK73AKoMLohLkOKK5sZWIr72AHX4rEXm4CXTa8vAZ4L5FXTK"  # (düzenlemeyin.)
+  allow_origins: ["*"] # CORS serbest bırakılır.
+  ts_window_seconds: 300 # İstek zaman penceresi (5 dk)
+  nonce_ttl_seconds: 600 # Nonce saklama süresi (10 dk)
+
+smtp:
+  enabled: true
+  host: "smtp.gmail.com"
+  port: 587
+  encryption: "tls"
+  auth: true
+  username: "no-reply@example.com"
+  password: "app-password-or-smtp-pass"
+  from_email: "no-reply@example.com"
+  from_name: "ZonelyPay"
+  notify_email: "alerts@example.com"
+
+payments:
+  weepay:
+    enabled: false
+    merchant_id: ""
+    api_key: ""
+    api_secret: ""
+    iframe_url: "https://secure.weepay.co/iframe?tid={TID}&amount={AMOUNT}&email={EMAIL}&user={USERID}"
+  paytr:
+    enabled: false
+    merchant_id: ""
+    merchant_key: ""
+    merchant_salt: ""
+    iframe_url: "https://www.paytr.com/odeme/iframe?tid={TID}&amount={AMOUNT}&email={EMAIL}&user={USERID}"
+  bank_transfer:
+    enabled: false
+    accounts:
+      - bank: "Ziraat"
+        iban: "TR00 0000 0000 0000 0000 0000 00"
+        holder: "Örnek Firma"
+      - bank: "İş Bankası"
+        iban: "TR11 1111 1111 1111 1111 1111 11"
+        holder: "Örnek Firma"
+
+whmcs:
+  enabled: false
+  base_url: "https://whmcs.example.com/includes/api.php"
+  api_identifier: ""
+  api_secret: ""
+
+wisecp:
+  enabled: false
+  base_url: "https://panel.example.com/api"
+  api_key: ""
